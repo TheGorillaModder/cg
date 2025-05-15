@@ -1,0 +1,67 @@
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+        }
+        iframe {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            height: 100%;
+            width: 100%;
+            outline: none;
+            border: none;
+        }
+        .panicbtn:hover {
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div style="
+    width:200px;height:60px;background-color:black;border-radius:200px;color:green;z-index:9999;position:fixed;
+    top:0px;left:0px;align-items:center;text-align:center;align-content:center;font-size:25;"
+    id="panic" class="panicbtn"
+    onclick="manual('`')">More Help</div>
+    <div id="calc">
+        <iframe id="calcf" src="calculator.html"></iframe>
+    </div>
+    <div id="container" style="display:none;">
+        <div id="games">
+            <iframe id="gamef" src="game.html"></iframe>
+        </div>
+        <div id="settings">
+            <iframe id="settingsf" src="settings.html"></iframe>
+        </div>
+    </div>
+    <script>
+        let inCalc = true;
+        let inSettings = false;
+        document.addEventListener("keydown", keyDownFunction);
+        function keyDownFunction(e) {
+            if (e.key == "`" || key == "~") {
+                inCalc = !inCalc;
+                document.getElementById("calc").style.display = inCalc ? `block` : `none`;
+                document.getElementById("container").style.display = inCalc ? `none` : `block`;
+                document.getElementById("games").style.display = inSettings ? `none` : `block`;
+                document.getElementById("settings").style.display = inSettings ? `block` : `none`;
+                document.getElementById("panic").innerHTML = inCalc ? "More Help" : "PANIC!";
+                document.getElementById("panic").style.color = inCalc ? "green" : "red";
+            }
+        }
+        function manual(key) {
+            if (key == "`" || key == "~") {
+                inCalc = !inCalc;
+                document.getElementById("calc").style.display = inCalc ? `block` : `none`;
+                document.getElementById("container").style.display = inCalc ? `none` : `block`;
+                document.getElementById("games").style.display = inSettings ? `none` : `block`;
+                document.getElementById("settings").style.display = inSettings ? `block` : `none`;
+                document.getElementById("panic").innerHTML = inCalc ? "More Help" : "PANIC!";
+                document.getElementById("panic").style.color = inCalc ? "green" : "red";
+            }
+        }
+    </script>
+</body>

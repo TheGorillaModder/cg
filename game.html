@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HTML5 Game Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      display: flex;
+    }
+
+    #sidebar {
+      width: 200px;
+      background-color: #1f1f1f;
+      padding: 20px;
+      height: 100vh;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+      position: fixed;
+    }
+
+    #sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    #sidebar a {
+      display: block;
+      color: white;
+      padding: 10px 0;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    #sidebar a:hover {
+      background-color: #333;
+    }
+
+    #main {
+      margin-left: 220px;
+      padding: 40px 20px;
+      flex: 1;
+    }
+
+    .category-header {
+      font-size: 24px;
+      margin: 40px 0 20px;
+      border-bottom: 2px solid #444;
+    }
+
+    .game-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .game-tile {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      cursor: pointer;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .game-tile:hover {
+      transform: scale(1.05);
+    }
+
+    .game-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .game-title {
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      font-size: 18px;
+      padding: 6px 0;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="sidebar">
+    <h2>Game Hub</h2>
+    <a href="#Driving">🚗 Driving</a>
+    <a href="#Shooting">🔫 Shooting</a>
+    <a href="#Action">🎮 Action</a>
+    <a href="#Puzzle">🧠 Puzzle</a>
+    <a href="#Sports">⚽ Sports</a>
+    <a href="#Featured">⭐ Featured</a>
+  </div>
+
+  <div id="main">
+    <div id="Driving"><div class="category-header">🚗 Driving Games</div><div class="game-container" id="Driving-games"></div></div>
+    <div id="Shooting"><div class="category-header">🔫 Shooting Games</div><div class="game-container" id="Shooting-games"></div></div>
+    <div id="Action"><div class="category-header">🎮 Action Games</div><div class="game-container" id="Action-games"></div></div>
+    <div id="Puzzle"><div class="category-header">🧠 Puzzle Games</div><div class="game-container" id="Puzzle-games"></div></div>
+    <div id="Sports"><div class="category-header">⚽ Sports Games</div><div class="game-container" id="Sports-games"></div></div>
+    <div id="Featured"><div class="category-header">⭐ Featured Games</div><div class="game-container" id="Featured-games"></div></div>
+  </div>
+
+  <script>
+    function openGame(refName) {
+      window.open("games/" + refName + ".html", "_blank");
+    }
+
+    function addGame(name, ref, category) {
+      const container = document.getElementById(category + "-games");
+      if (!container) return;
+      const tile = document.createElement("div");
+      tile.className = "game-tile";
+      tile.onclick = () => openGame(ref);
+      tile.innerHTML = `
+        <img class="game-image" src="images/${ref}.png" alt="${name}">
+        <div class="game-title">${name}</div>
+      `;
+      container.appendChild(tile);
+    }
+
+    // 🚗 Driving Games
+    addGame("Burnin 5 XS", "burnin5xs", "Driving");
+    addGame("Car Crash 3", "carcrash3", "Driving");
+    addGame("Drift Hunters", "drifthunters", "Driving");
+    addGame("Extreme Driving", "extremedrive", "Driving");
+    addGame("Highway Racer", "highwayracer3d", "Driving");
+    addGame("Madalin Stunt Cars 2", "madalin2", "Driving");
+    addGame("Moto X3M", "motox3m", "Driving");
+    addGame("Police Pursuit 2", "policepursuit2", "Driving");
+    addGame("Poly Track", "polytrack", "Driving");
+    addGame("Traffic Racer", "burnin5xs", "Driving");
+
+    // 🔫 Shooting Games
+    addGame("1v1.lol", "1v1lol", "Shooting");
+    addGame("Bullet Force", "bulletforce", "Shooting");
+    addGame("Krunker.io", "krunker", "Shooting");
+    addGame("Masked Forces", "maskedforces", "Shooting");
+    addGame("Mini Royale 2", "miniroyale2", "Shooting");
+    addGame("Rooftop Snipers", "rooftopsnipers", "Shooting");
+    addGame("Shell Shockers", "shellshock", "Shooting");
+    addGame("Time Shooter 3", "timeshooter3", "Shooting");
+    addGame("Zombs Royale", "zombsroyale", "Shooting");
+
+    // 🎮 Action Games
+    addGame("Stickman Hook", "stickmanhook", "Action");
+    addGame("Vex 7", "vex7", "Action");
+    addGame("Stick Fight", "stickfight", "Action");
+
+    // 🧠 Puzzle Games
+    addGame("2048", "2048", "Puzzle");
+    addGame("Cut the Rope", "cuttherope", "Puzzle");
+    addGame("Where’s My Water?", "wheresmywater", "Puzzle");
+
+    // ⚽ Sports Games
+    addGame("Basketball Stars", "basketballstars", "Sports");
+    addGame("Soccer Random", "soccerrandom", "Sports");
+    addGame("Retro Bowl", "retrobowl", "Sports");
+
+    // ⭐ Driving Games
+    addGame("Slope", "slope", "Featured");
+    addGame("Subway Surfers", "subwaysurfers", "Featured");
+    addGame("Tunnel Rush", "tunnelrush", "Featured");
+
+    addGame("NAME", "ref", "SECTION");
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: sans-serif;
+        }
+
+        .calculator {
+            background-color: #2e2e2e;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .display {
+            background-color: #000;
+            color: #0f0;
+            font-size: 2em;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: right;
+            margin-bottom: 20px;
+            width: 320px;
+            box-sizing: border-box;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 80px);
+            gap: 10px;
+        }
+
+        .calcbtn {
+            background-color: gray;
+            color: white;
+            font-size: 24px;
+            border: none;
+            border-radius: 50%;
+            width: 75px;
+            height: 75px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .calcbtn:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div id="display" class="display">0</div>
+        <div class="buttons">
+            <button class="calcbtn" onclick="press('.')">.</button>
+            <button class="calcbtn" onclick="clearDisplay()">A/C</button>
+            <button class="calcbtn" onclick="press('/')">/</button>
+            <button class="calcbtn" onclick="press('*')">*</button>
+            <button class="calcbtn" onclick="press('1')">1</button>
+            <button class="calcbtn" onclick="press('2')">2</button>
+            <button class="calcbtn" onclick="press('3')">3</button>
+            <button class="calcbtn" onclick="press('-')">-</button>
+            <button class="calcbtn" onclick="press('4')">4</button>
+            <button class="calcbtn" onclick="press('5')">5</button>
+            <button class="calcbtn" onclick="press('6')">6</button>
+            <button class="calcbtn" onclick="press('+')">+</button>
+            <button class="calcbtn" onclick="press('7')">7</button>
+            <button class="calcbtn" onclick="press('8')">8</button>
+            <button class="calcbtn" onclick="press('9')">9</button>
+            <button class="calcbtn" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let display = document.getElementById('display');
+        let currentInput = '';
+
+        function press(value) {
+            if (display.innerText === '0' || display.innerText === 'Error') {
+                currentInput = value;
+            } else {
+                currentInput += value;
+            }
+            display.innerText = currentInput;
+        }
+
+        function clearDisplay() {
+            currentInput = '';
+            display.innerText = '0';
+        }
+
+        function calculate() {
+            try {
+                currentInput = eval(currentInput).toString();
+                display.innerText = currentInput;
+            } catch {
+                display.innerText = 'Error';
+                currentInput = '';
+            }
+        }
+    </script>
+</body>
+</html>
